@@ -24,6 +24,7 @@ public class Constant {
     public static boolean IS_FROM_ORDER_STATISTIC = false;
 
     public static double DiscountPrice = 0.00;
+    public static double CheckGit = 0.00;
 
     public static User loginUser = new User();
 
