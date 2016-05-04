@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/login_background"
+    tools:context="com.technologyminds.ferozproductsorderbookingsystem.DiscountAcitivity">
+
+    <include layout="@layout/header"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="140dp"
+        android:gravity="center_horizontal">
+
+        <com.technologyminds.ferozproductsorderbookingsystem.ExpandableHeightGridView
+            android:id="@+id/list_discount"
+            android:layout_width="match_parent"
+            android:numColumns="1"
+            android:verticalSpacing="10dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/login_button"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="BACK"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/login_button"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="NEXT"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+
+
+    <include layout="@layout/footer"/>
+</RelativeLayout>
+

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/login_background"
+    tools:context="com.technologyminds.ferozproductsorderbookingsystem.NotificationActivity">
+
+    <include layout="@layout/header"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="140dp"
+        android:gravity="center_horizontal">
+
+        <ListView
+            android:id="@+id/list_notification"
+            android:layout_width="match_parent"
+            android:dividerHeight="10dp"
+            android:divider="@color/login_background"
+            android:layout_height="wrap_content">
+
+        </ListView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_button"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="BACK"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"/>
+
+
+    <include layout="@layout/footer"/>
+</RelativeLayout>

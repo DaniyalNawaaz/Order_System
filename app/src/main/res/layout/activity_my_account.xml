@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/login_background"
+    tools:context="com.technologyminds.ferozproductsorderbookingsystem.MyAccountActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/header"/>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="70dp">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:id="@+id/table_book_order"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_row_height"
+                android:weightSum="1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/table_row_1">
+
+                <TextView
+                    android:width="0dip"
+                    android:layout_height="wrap_content"
+                    android:text="MY ACCOUNT"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="35dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/heading"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_row_height"
+                android:weightSum="1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/table_row_2">
+
+                <EditText
+                    android:id="@+id/current_password"
+                    android:width="0dip"
+                    android:layout_height="wrap_content"
+                    android:hint="Current Password"
+                    android:textSize="13dp"
+                    android:layout_weight="1"
+                    android:padding="10dip"
+                    android:inputType="textPassword"
+                    android:background="@drawable/round_border"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_row_height"
+                android:weightSum="1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/table_row_3">
+
+                <EditText
+                    android:id="@+id/new_password"
+                    android:width="0dip"
+                    android:layout_height="wrap_content"
+                    android:editable="true"
+                    android:hint="New Password"
+                    android:textSize="13dp"
+                    android:layout_weight="1"
+                    android:padding="10dip"
+                    android:inputType="textPassword"
+                    android:background="@drawable/round_border"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_row_height"
+                android:weightSum="1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/table_row_4">
+
+                <EditText
+                    android:id="@+id/confirm_password"
+                    android:width="0dip"
+                    android:layout_height="wrap_content"
+                    android:editable="true"
+                    android:hint="Confirm Password"
+                    android:textSize="13dp"
+                    android:layout_weight="1"
+                    android:padding="10dip"
+                    android:inputType="textPassword"
+                    android:background="@drawable/round_border"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:weightSum="1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/table_row_6">
+
+                <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.44"
+                    android:inputType="text"
+                    android:text="BACK"
+                    android:padding="10dip"
+                    android:background="@drawable/login_button"
+                    android:textColor="@color/white"
+                    android:tag="Date"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.12"/>
+
+                <Button
+                    android:id="@+id/btn_ok"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.44"
+                    android:text="OK"
+                    android:background="@drawable/login_button"
+                    android:textColor="@color/white"
+                    android:tag="Date"
+                    android:textStyle="bold"/>
+
+
+            </TableRow>
+
+        </TableLayout>
+
+    </ScrollView>
+
+    <include layout="@layout/footer"/>
+
+</RelativeLayout>

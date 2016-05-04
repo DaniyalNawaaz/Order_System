@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Feroz Products Order Booking System</string>
+
+    <string name="username_hint">Enter User Name</string>
+    <string name="password_hint">Enter Your Password</string>
+    <string name="login_button">Login</string>
+
+    <string name="book_an_order_menu">BOOK AN ORDER</string>
+    <string name="register_store_menu">REGISTER STORE</string>
+    <string name="past_order_menu">PAST ORDER</string>
+    <string name="my_account_menu">MY ACCOUNT</string>
+    <string name="notification_menu">NOTIFICATION</string>
+    <string name="contact_us_menu">CONTACT US</string>
+
+    <string name="instruction_prompt">Select Instructions</string>
+    <string name="category_prompt">Select Category</string>
+
+    <string-array name="instruction_arrays">
+        <item>Instructions No. 1</item>
+        <item>Instructions No. 2</item>
+        <item>Instructions No. 3</item>
+        <item>Instructions No. 4</item>
+        <item>Instructions No. 5</item>
+        <item>Instructions No. 6</item>
+        <item>Instructions No. 7</item>
+        <item>Instructions No. 8</item>
+    </string-array>
+
+</resources>

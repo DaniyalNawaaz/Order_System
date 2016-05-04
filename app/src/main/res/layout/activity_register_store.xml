@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/login_background"
+    tools:context="com.technologyminds.ferozproductsorderbookingsystem.RegisterStoreActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/header"/>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="70dp">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:id="@+id/table_book_order"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_row_height"
+                android:weightSum="1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/table_row_1">
+
+                <TextView
+                    android:width="0dip"
+                    android:layout_height="wrap_content"
+                    android:text="REGISTER STORE"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="35dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/heading"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_row_height"
+                android:weightSum="1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/table_row_2">
+
+                <EditText
+                    android:id="@+id/store_name"
+                    android:width="0dip"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:hint="Store Name"
+                    android:textSize="13dp"
+                    android:layout_weight="1"
+                    android:padding="10dip"
+                    android:textColor="@color/heading"
+                    android:inputType="textPersonName"
+                    android:background="@drawable/round_border"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_row_height"
+                android:weightSum="1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/table_row_3">
+
+                <EditText
+                    android:id="@+id/store_address"
+                    android:width="0dip"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:hint="Store Address"
+                    android:textSize="13dp"
+                    android:layout_weight="1"
+                    android:padding="10dip"
+                    android:textColor="@color/heading"
+                    android:inputType="textPostalAddress"
+                    android:background="@drawable/round_border"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_row_height"
+                android:weightSum="1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/table_row_4">
+
+                <Spinner
+                    android:id="@+id/spinner_zones"
+                    android:width="0dip"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_weight="1"
+                    android:textSize="13sp"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/heading"
+                    android:background="@drawable/round_border"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_row_height"
+                android:weightSum="1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/table_row_5">
+
+                <EditText
+                    android:id="@+id/store_contact"
+                    android:width="0dip"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:hint="Contact"
+                    android:textSize="13dp"
+                    android:layout_weight="1"
+                    android:padding="10dip"
+                    android:inputType="phone"
+                    android:textColor="@color/heading"
+                    android:background="@drawable/round_border"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_row_height"
+                android:weightSum="1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/table_row_6">
+
+                <EditText
+                    android:id="@+id/store_owner_contact"
+                    android:width="0dip"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:hint="Contact Name"
+                    android:textSize="13dp"
+                    android:layout_weight="1"
+                    android:padding="10dip"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/heading"
+                    android:background="@drawable/round_border"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_row_height"
+                android:weightSum="1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/table_row_7">
+
+                <Spinner
+                    android:id="@+id/spinner_category"
+                    android:width="0dip"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_weight="1"
+                    android:textSize="13sp"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/heading"
+                    android:background="@drawable/round_border"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_row_height"
+                android:weightSum="1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/table_row_8">
+
+                <Spinner
+                    android:id="@+id/spinner_store_carry"
+                    android:width="0dip"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_weight="1"
+                    android:textSize="13sp"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/heading"
+                    android:background="@drawable/round_border"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:weightSum="1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="80dp"
+                android:id="@+id/table_row_9">
+
+                <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.38"
+                    android:inputType="text"
+                    android:text="BACK"
+                    android:padding="10dip"
+                    android:background="@drawable/login_button"
+                    android:textColor="@color/white"
+                    android:tag="Date"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.06"/>
+
+                <Button
+                    android:id="@+id/btn_register"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.56"
+                    android:text="REGISTER"
+                    android:background="@drawable/login_button"
+                    android:textColor="@color/white"
+                    android:tag="Date"
+                    android:textStyle="bold"/>
+
+
+            </TableRow>
+
+        </TableLayout>
+
+    </ScrollView>
+
+    <include layout="@layout/footer"/>
+
+</RelativeLayout>

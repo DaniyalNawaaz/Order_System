@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/login_background"
+    tools:context="com.technologyminds.ferozproductsorderbookingsystem.MyAccountActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/header"/>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="70dp">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:id="@+id/table_book_order"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_row_height"
+                android:weightSum="1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/table_row_1">
+
+                <TextView
+                    android:id="@+id/txt_heading"
+                    android:width="0dip"
+                    android:layout_height="wrap_content"
+                    android:text="ORDER TARGET"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="35dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/heading"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_row_height"
+                android:background="@drawable/list_background"
+                android:weightSum="2"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/table_row_2">
+
+                <TextView
+                    android:width="0dip"
+                    android:layout_height="wrap_content"
+                    android:text="Total Target"
+                    android:textSize="14dp"
+                    android:layout_weight="0.8"
+                    android:padding="10dip"
+                    android:textColor="@color/heading"/>
+
+                <TextView
+                    android:id="@+id/txt_total_target"
+                    android:width="0dip"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="14dp"
+                    android:layout_weight="1.2"
+                    android:padding="10dip"
+                    android:textColor="@color/heading"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_row_height"
+                android:weightSum="2"
+                android:background="@drawable/list_background"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/table_row_3">
+
+                <TextView
+                    android:width="0dip"
+                    android:layout_height="wrap_content"
+                    android:text="Target Achieved"
+                    android:textSize="14dp"
+                    android:layout_weight="0.8"
+                    android:padding="10dip"
+                    android:textColor="@color/heading"/>
+
+                <TextView
+                    android:id="@+id/txt_total_achieve"
+                    android:width="0dip"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="14dp"
+                    android:layout_weight="1.2"
+                    android:padding="10dip"
+                    android:textColor="@color/heading"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_row_height"
+                android:weightSum="2"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/list_background"
+                android:layout_marginTop="15dp"
+                android:id="@+id/table_row_4">
+
+                <TextView
+                    android:id="@+id/txt_show_value"
+                    android:width="0dip"
+                    android:layout_height="wrap_content"
+                    android:text="Target Remaining"
+                    android:textSize="14dp"
+                    android:layout_weight="0.8"
+                    android:padding="10dip"
+                    android:textColor="@color/heading"/>
+
+                <TextView
+                    android:id="@+id/txt_total_remaining"
+                    android:width="0dip"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="14dp"
+                    android:layout_weight="1.2"
+                    android:padding="10dip"
+                    android:textColor="@color/heading"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:weightSum="1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/table_row_6">
+
+                <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:inputType="text"
+                    android:text="BACK"
+                    android:padding="10dip"
+                    android:background="@drawable/login_button"
+                    android:textColor="@color/white"
+                    android:tag="Date"
+                    android:textStyle="bold"/>
+
+            </TableRow>
+
+        </TableLayout>
+
+    </ScrollView>
+
+    <include layout="@layout/footer"/>
+
+</RelativeLayout>

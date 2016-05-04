@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/tvBottom"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/image_footer_height"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/footer" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="www.ferozproducts.com\nVersion 1.3.0"
+            android:id="@+id/tvUrlNIBD"
+            android:textSize="@dimen/header_tv_textsize"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="10dp"
+            android:layout_marginLeft="@dimen/header_tv_marginEndStart" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Powered By\nTechnology Minds"
+            android:id="@+id/tvUrlTM"
+            android:textSize="@dimen/header_tv_textsize"
+            android:textColor="@color/white"
+            android:paddingRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/header_tv_marginEndStart" />
+    </RelativeLayout>
+</merge>
