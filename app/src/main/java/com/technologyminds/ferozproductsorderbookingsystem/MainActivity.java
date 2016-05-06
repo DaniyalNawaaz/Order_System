@@ -709,7 +709,7 @@ public class MainActivity extends AppCompatActivity {
                             product.setProductName(obj.getString("name"));
                             Log.i("User Role",Role+"-");
                             if(Role!=-1){
-                                if(Role==3){
+                                if(Role==3 || Role==2){
                                     product.setPrice(Double.parseDouble(obj.getString("price")));
                                 }
                                 else{
