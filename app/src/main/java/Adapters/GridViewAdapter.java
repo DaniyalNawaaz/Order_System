@@ -84,7 +84,7 @@ public class GridViewAdapter extends BaseAdapter {
         }
 
         Picasso.with(context)
-                .load("http://dev.technology-minds.com/metro_dev/"+itemList.get(position).getImage_path())
+                .load("http://ferozproducts.com/order-system/"+itemList.get(position).getImage_path())
                         .noFade().resize(120, 180)
                 .placeholder(R.drawable.loading)
                 .into(viewHolder.img);

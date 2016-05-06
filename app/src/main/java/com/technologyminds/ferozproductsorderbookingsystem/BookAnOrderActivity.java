@@ -427,8 +427,10 @@ public class BookAnOrderActivity extends AppCompatActivity {
 
                 try {
                     if(response.contentEquals("Store Not Available")){
-                        initializeData();
-                        Toast.makeText(BookAnOrderActivity.this,"Not New Store Found in your zone",Toast.LENGTH_SHORT).show();
+                        if(currentIndex ==listSize){
+                            initializeData();
+                        }
+                        //Toast.makeText(BookAnOrderActivity.this,"Not New Store Found in your zone",Toast.LENGTH_SHORT).show();
                     }
                     else{
                         new storeParsingInBackground().execute(response);
@@ -651,4 +653,18 @@ public class BookAnOrderActivity extends AppCompatActivity {
 
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Constant.itemList = new ArrayList<>();
+        Constant.itemDiscountList = new ArrayList<>();
+        Constant.StoreName="";
+        Constant.StoreCode="";
+        Constant.StoreNumber="";
+        Constant.DeliverDate="";
+        Constant.SelectedInstruction="";
+        Constant.SelectedInstructionID=-1;
+    }
 }

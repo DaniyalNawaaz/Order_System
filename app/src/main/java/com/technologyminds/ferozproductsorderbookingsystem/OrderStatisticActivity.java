@@ -316,6 +316,7 @@ public class OrderStatisticActivity extends AppCompatActivity {
         pDialog.setMessage("Please Wait ...");
         showDialog();
 
+        Log.i("Order Items",order_item);
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 Constant.POST_PLACE_ORDERS, new Response.Listener<String>() {
 
