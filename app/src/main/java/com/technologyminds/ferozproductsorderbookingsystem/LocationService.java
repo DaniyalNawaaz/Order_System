@@ -45,17 +45,21 @@ public class LocationService extends Service {
                 User loginUser = db.getLoginedUser();
                 db.close();
                 if(gps!=null){
-
                     double latitude = gps.getLatitude();
                     double longitude = gps.getLongitude();
 
                     if(conn.isConnectingToInternet()){
-                        Log.i("Call From Location Service",latitude+"--"+longitude);
-                        //Toast.makeText(LocationService.this,latitude+"\n"+longitude,Toast.LENGTH_SHORT).show();
-                        DashboardActivity.updateLocation(
-                                String.valueOf(loginUser.getId()),
-                                String.valueOf(latitude),
-                                String.valueOf(longitude));
+                        if(loginUser.getIs_login()==1){
+                            Log.i("Call From Location Service",latitude+"--"+longitude);
+                            //Toast.makeText(LocationService.this,latitude+"\n"+longitude,Toast.LENGTH_SHORT).show();
+                            DashboardActivity.updateLocation(
+                                    String.valueOf(loginUser.getId()),
+                                    String.valueOf(latitude),
+                                    String.valueOf(longitude));
+                        }
+                        else{
+                            Log.i("Logout","Location Can not Send");
+                        }
                     }
                 }
                 handler.postDelayed(runnable, 100000);

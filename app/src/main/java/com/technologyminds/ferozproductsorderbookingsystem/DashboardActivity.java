@@ -106,9 +106,14 @@ public class DashboardActivity extends AppCompatActivity {
                         double longitude = gps.getLongitude();
                         //Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
                         if(conn.isConnectingToInternet()){
-                            updateLocation(String.valueOf(Constant.loginUser.getId()),
-                                    String.valueOf(latitude),
-                                    String.valueOf(longitude));
+                            if(Constant.loginUser.getIs_login()==1){
+                                updateLocation(String.valueOf(Constant.loginUser.getId()),
+                                        String.valueOf(latitude),
+                                        String.valueOf(longitude));
+                            }
+                            else{
+                                Log.i("Logout","Location Can not Send");
+                            }
                         }
                     }
                 }
@@ -748,9 +753,14 @@ public class DashboardActivity extends AppCompatActivity {
             SqlDB db = new SqlDB(mContext);
             if(conn.isConnectingToInternet()){
                 Constant.loginUser = db.getLoginedUser();
-                updateLocation(String.valueOf(Constant.loginUser.getId()),
-                        String.valueOf(location.getLatitude()),
-                        String.valueOf(location.getLongitude()));
+                if(Constant.loginUser.getIs_login()==1){
+                    updateLocation(String.valueOf(Constant.loginUser.getId()),
+                            String.valueOf(location.getLatitude()),
+                            String.valueOf(location.getLongitude()));
+                }
+                else{
+                    Log.i("Logout", "Location Can not Send");
+                }
             }
         }
 
