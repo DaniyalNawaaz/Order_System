@@ -206,6 +206,47 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginTop="8dp"
+                android:id="@+id/table_row_60">
+
+                <TextView
+                    android:id="@+id/tvOrderDate"
+                    android:layout_width="0dip"
+                    android:layout_height="50dp"
+                    android:layout_weight="0.83"
+                    android:inputType="text"
+                    android:text="Order Date"
+                    android:textSize="13dp"
+                    android:padding="10dip"
+                    android:tag="Date"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/border_edittext">
+                </TextView>
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.02"/>
+
+                <Button
+                    android:id="@+id/btn_pick_order_date"
+                    android:layout_width="0dip"
+                    android:layout_height="@dimen/table_row_height"
+                    android:layout_weight="0.15"
+                    android:inputType="text"
+                    android:layout_gravity="center"
+                    android:background="@drawable/calender"
+                    android:tag="Date"/>
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="8dp"
                 android:id="@+id/table_row_6">
 
                 <TextView

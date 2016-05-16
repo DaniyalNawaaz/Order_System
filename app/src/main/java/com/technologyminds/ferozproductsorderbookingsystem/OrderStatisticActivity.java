@@ -145,6 +145,7 @@ public class OrderStatisticActivity extends AppCompatActivity {
                         Log.i("Total Quantity","-"+totalQuantity);
                         putOrder(Constant.StoreCode, String.valueOf(Constant.loginUser.getId()),
                                 txtTotalAmmount.getText().toString(),
+                                Constant.OrderDate,
                                 Constant.DeliverDate, String.valueOf(instructionId),
                                 "0",
                                 String.valueOf(totalProductWiseDiscount),
@@ -154,7 +155,7 @@ public class OrderStatisticActivity extends AppCompatActivity {
                         Order order = new Order();
                         order.setOrderAmount(Double.parseDouble(txtTotalAmmount.getText().toString()));
                         order.setStoreName(txtStoreName.getText().toString());
-                        order.setOrderDate(txtOrderDate.getText().toString());
+                        order.setOrderDate(Constant.OrderDate);
                         order.setDeliveryDate(Constant.DeliverDate);
                         order.setOrderDiscount(totalProductWiseDiscount);
                         order.setOrderPerCartonDiscount(0);
@@ -199,6 +200,7 @@ public class OrderStatisticActivity extends AppCompatActivity {
                         Constant.StoreName="";
                         Constant.StoreCode="";
                         Constant.StoreNumber="";
+                        Constant.OrderDate="";
                         Constant.DeliverDate="";
                         Constant.SelectedInstruction="";
                         Constant.DiscountPrice=0.00;
@@ -233,26 +235,27 @@ public class OrderStatisticActivity extends AppCompatActivity {
         txtOrderDate = (TextView) findViewById(R.id.txt_order_date);
         txtDeliverDate = (TextView) findViewById(R.id.txt_order_delivery_date);
 
-        final Calendar c = Calendar.getInstance();
-        int year  = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-
-        if(String.valueOf(month).length()==1){
-            txtOrderDate.setText(new StringBuilder()
-                    .append(day).append("-").append("0")
-                    .append(month + 1).append("-").append(year));
-        }
-        else{
-            txtOrderDate.setText(new StringBuilder()
-                    .append(day).append("-")
-                    .append(month + 1).append("-").append(year));
-        }
+//        final Calendar c = Calendar.getInstance();
+//        int year  = c.get(Calendar.YEAR);
+//        int month = c.get(Calendar.MONTH);
+//        int day = c.get(Calendar.DAY_OF_MONTH);
+//
+//        if(String.valueOf(month).length()==1){
+//            txtOrderDate.setText(new StringBuilder()
+//                    .append(day).append("-").append("0")
+//                    .append(month + 1).append("-").append(year));
+//        }
+//        else{
+//            txtOrderDate.setText(new StringBuilder()
+//                    .append(day).append("-")
+//                    .append(month + 1).append("-").append(year));
+//        }
 //        txtOrderDate.setText(new StringBuilder().append(day).append("-")
 //                .append(month + 1).append("-").append(year));
 
         txtStoreName.setText(Constant.StoreName);
         txtStoreCode.setText(Constant.StoreCode);
+        txtOrderDate.setText(Constant.OrderDate);
         txtDeliverDate.setText(Constant.DeliverDate);
 
         txtSubTotalAmmount = (TextView) findViewById(R.id.txt_sub_total_ammount);
@@ -307,7 +310,7 @@ public class OrderStatisticActivity extends AppCompatActivity {
     }
 
     private void putOrder(final String store_id, final String user_id,final String totalPrice,
-                          final String order_delivery_date,
+                          final String order_date,final String order_delivery_date,
                             final String instruction_id, final String perCarton, final String discount,
                           final String totalQuantiy, final String order_item) {
         // Tag used to cancel the request
@@ -335,6 +338,7 @@ public class OrderStatisticActivity extends AppCompatActivity {
                         Constant.StoreName="";
                         Constant.StoreCode="";
                         Constant.StoreNumber="";
+                        Constant.OrderDate="";
                         Constant.DeliverDate="";
                         Constant.SelectedInstruction="";
                         Constant.SelectedInstructionID=-1;
@@ -371,6 +375,7 @@ public class OrderStatisticActivity extends AppCompatActivity {
                 params.put("store_id", store_id);
                 params.put("status_id", "1");
                 params.put("total_order", totalPrice);
+                params.put("order_date", order_date);
                 params.put("due_date", order_delivery_date);
                 params.put("instruction_id", instruction_id);
                 params.put("per_carton_discount", perCarton);

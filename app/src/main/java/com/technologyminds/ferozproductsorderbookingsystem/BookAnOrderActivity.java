@@ -1,8 +1,10 @@
 package com.technologyminds.ferozproductsorderbookingsystem;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -58,11 +60,11 @@ public class BookAnOrderActivity extends AppCompatActivity {
 
     SqlDB db;
 
-    Button btnBack,btnNext,btnPickDate;
+    Button btnBack,btnNext,btnPickDate,btnPickOrderDate;
     AutoCompleteTextView txtStoreNames;
     AutoCompleteTextView txtStoreCode;
     AutoCompleteTextView txtStoreNum;
-    TextView txtShowDate;
+    TextView txtShowDate,txtShowOrderDate;
     Spinner spinnerInstructions;
     //EditText edDiscountField;
 
@@ -87,6 +89,7 @@ public class BookAnOrderActivity extends AppCompatActivity {
     int currentIndex=-1;
 
     static final int DATE_PICKER_ID = 1111;
+    static final int DATE_PICKER_ORDER_ID = 1112;
 
     ConnectionDetector conn;
 
@@ -136,6 +139,9 @@ public class BookAnOrderActivity extends AppCompatActivity {
         btnPickDate = (Button) findViewById(R.id.btn_pick_date);
         txtShowDate = (TextView) findViewById(R.id.tvDate);
 
+        btnPickOrderDate = (Button) findViewById(R.id.btn_pick_order_date);
+        txtShowOrderDate = (TextView) findViewById(R.id.tvOrderDate);
+
         spinnerInstructions = (Spinner) findViewById(R.id.spinner_instruction);
         //edDiscountField = (EditText) findViewById(R.id.ed_discount_field);
         pDialog = new ProgressDialog(this);
@@ -149,9 +155,17 @@ public class BookAnOrderActivity extends AppCompatActivity {
             txtShowDate.setText(new StringBuilder()
                     .append(day).append("-").append("0")
                     .append(month + 1).append("-").append(year));
+
+            txtShowOrderDate.setText(new StringBuilder()
+                    .append(day).append("-").append("0")
+                    .append(month + 1).append("-").append(year));
         }
         else{
             txtShowDate.setText(new StringBuilder()
+                    .append(day).append("-")
+                    .append(month + 1).append("-").append(year));
+
+            txtShowOrderDate.setText(new StringBuilder()
                     .append(day).append("-")
                     .append(month + 1).append("-").append(year));
         }
@@ -236,6 +250,7 @@ public class BookAnOrderActivity extends AppCompatActivity {
                 txtStoreNames.setText(Constant.StoreName);
                 txtStoreCode.setText(Constant.StoreCode);
                 txtStoreNum.setText(Constant.StoreNumber);
+                txtShowOrderDate.setText(Constant.OrderDate);
                 txtShowDate.setText(Constant.DeliverDate);
                 //edDiscountField.setText(String.valueOf(Constant.DiscountPrice));
             }
@@ -304,6 +319,13 @@ public class BookAnOrderActivity extends AppCompatActivity {
                 }
             });
 
+            btnPickOrderDate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showDialog(DATE_PICKER_ORDER_ID);
+                }
+            });
+
             btnBack.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -326,8 +348,8 @@ public class BookAnOrderActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if(!txtStoreNames.getText().toString().isEmpty()
-                            && !txtStoreCode.getText().toString().isEmpty()
-                            && !txtStoreNames.getText().toString().isEmpty()
+                            //&& !txtStoreCode.getText().toString().isEmpty()
+                            //&& !txtStoreNames.getText().toString().isEmpty()
                             && !spinnerInstructions.getSelectedItem().toString().isEmpty()){
                         if(!spinnerInstructions.getSelectedItem().toString().contentEquals("Select Instruction")){
                             Log.i("List Size",Constant.itemList.size()+"");
@@ -354,6 +376,7 @@ public class BookAnOrderActivity extends AppCompatActivity {
                                 Constant.StoreName = txtStoreNames.getText().toString();
                                 Constant.StoreCode = txtStoreCode.getText().toString();
                                 Constant.StoreNumber = txtStoreNum.getText().toString();
+                                Constant.OrderDate = txtShowOrderDate.getText().toString();
                                 Constant.DeliverDate = txtShowDate.getText().toString();
                                 Constant.SelectedInstruction = spinnerInstructions.getSelectedItem().toString();
                                 Constant.SelectedInstructionID = spinnerInstructions.getSelectedItemPosition();
@@ -361,6 +384,7 @@ public class BookAnOrderActivity extends AppCompatActivity {
                                     Constant.DiscountPrice = 0;//Double.parseDouble(edDiscountField.getText().toString());
                                     Log.i("Discount Price",Constant.DiscountPrice+"-");
                                 //}
+                                Log.i("Order Date",Constant.OrderDate);
                                 Log.i("Delivery Date",Constant.DeliverDate);
                                 for(int i=0;i<storeList.size();i++){
                                     if(storeList.get(i).getStoreName().contentEquals(Constant.StoreName)
@@ -377,7 +401,30 @@ public class BookAnOrderActivity extends AppCompatActivity {
                                     startActivity(i);
                                 }
                                 else{
-                                    Helper.showToast(BookAnOrderActivity.this,"You Have Selected Invalid Store");
+                                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(BookAnOrderActivity.this);
+                                    alertDialog.setTitle("Store Not Exist ...");
+                                    alertDialog.setMessage("Do you want to Add it?");
+
+                                    alertDialog.setNegativeButton("NO",
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog,  int which) {
+                                                    //Toast.makeText(getApplicationContext(), "You clicked on NO", Toast.LENGTH_SHORT).show();
+                                                    dialog.cancel();
+                                                }
+                                            });
+                                    alertDialog.setPositiveButton("YES",
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog,int which) {
+                                                    // Write your code here to execute after dialog
+                                                    Intent i = new Intent(BookAnOrderActivity.this,RegisterStoreActivity.class);
+                                                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                    startActivity(i);
+                                                    finish();
+                                                }
+                                            });
+
+                                    alertDialog.show();
+                                    //Helper.showToast(BookAnOrderActivity.this,"You Have Selected Invalid Store");
                                 }
 
 
@@ -571,6 +618,8 @@ public class BookAnOrderActivity extends AppCompatActivity {
         switch (id) {
             case DATE_PICKER_ID:
                 return new DatePickerDialog(this, pickerListener, year, month,day);
+            case DATE_PICKER_ORDER_ID:
+                return new DatePickerDialog(this, pickerListener1, year, month,day);
         }
         return null;
     }
@@ -584,73 +633,156 @@ public class BookAnOrderActivity extends AppCompatActivity {
             selMonth = selectedMonth;
             selDay   = selectedDay;
 
-            if(selYear>=year){
-                if(selYear==year){
-                    if(selMonth>=month){
-                        if(selMonth==month){
-                            if(selDay>day){
-                                if(String.valueOf(selMonth).length()==1){
-                                    txtShowDate.setText(new StringBuilder().append(selDay)
-                                            .append("-").append("0").append(selMonth + 1).append("-").append(selYear)
-                                            .append(" "));
-                                }
-                                else{
-                                    txtShowDate.setText(new StringBuilder().append(selDay)
-                                            .append("-").append(selMonth+1).append("-").append(selYear)
-                                            .append(" "));
-                                }
-                                txtShowDate.requestFocus();
-                            }
-                            else{
-                                Helper.showAlertDialog(BookAnOrderActivity.this,"Wrong Date Selection","Invalid Order Due Date");
-                                txtShowDate.setText(new StringBuilder()
-                                        .append(day).append("-")
-                                        .append(month + 1).append("-").append(year));
-                            }
-                        }
-                        else{
-                            if(String.valueOf(selMonth).length()==1){
-                                txtShowDate.setText(new StringBuilder().append(selDay)
-                                        .append("-").append("0").append(selMonth+1).append("-").append(selYear)
-                                        .append(" "));
-                            }
-                            else{
-                                txtShowDate.setText(new StringBuilder().append(selDay)
-                                        .append("-").append(selMonth+1).append("-").append(selYear)
-                                        .append(" "));
-                            }
-                            txtShowDate.requestFocus();
-                        }
-                    }
-                    else{
-                        Helper.showAlertDialog(BookAnOrderActivity.this,"Wrong Date Selection","Invalid Order Due Date");
-                        txtShowDate.setText(new StringBuilder()
-                                .append(day).append("-")
-                                .append(month + 1).append("-").append(year));
-                    }
-                }
-                else{
-                    if(String.valueOf(selMonth).length()==1){
-                        txtShowDate.setText(new StringBuilder().append(selDay)
-                                .append("-").append("0").append(selMonth+1).append("-").append(selYear)
-                                .append(" "));
-                    }
-                    else{
-                        txtShowDate.setText(new StringBuilder().append(selDay)
-                                .append("-").append(selMonth+1).append("-").append(selYear)
-                                .append(" "));
-                    }
-                    txtShowDate.requestFocus();
-                }
-            }
-            else{
-                Helper.showAlertDialog(BookAnOrderActivity.this,"Wrong Date Selection","Invalid Order Due Date");
-                txtShowDate.setText(new StringBuilder()
-                        .append(day).append("-")
-                        .append(month + 1).append("-").append(year));
-            }
+//            if(selYear>=year){
+//                if(selYear==year){
+//                    if(selMonth>=month){
+//                        if(selMonth==month){
+//                            if(selDay>day){
+//                                if(String.valueOf(selMonth).length()==1){
+//                                    txtShowDate.setText(new StringBuilder().append(selDay)
+//                                            .append("-").append("0").append(selMonth + 1).append("-").append(selYear)
+//                                            .append(" "));
+//                                }
+//                                else{
+//                                    txtShowDate.setText(new StringBuilder().append(selDay)
+//                                            .append("-").append(selMonth+1).append("-").append(selYear)
+//                                            .append(" "));
+//                                }
+//                                txtShowDate.requestFocus();
+//                            }
+//                            else{
+//                                Helper.showAlertDialog(BookAnOrderActivity.this,"Wrong Date Selection","Invalid Order Due Date");
+//                                txtShowDate.setText(new StringBuilder()
+//                                        .append(day).append("-")
+//                                        .append(month + 1).append("-").append(year));
+//                            }
+//                        }
+//                        else{
+//                            if(String.valueOf(selMonth).length()==1){
+//                                txtShowDate.setText(new StringBuilder().append(selDay)
+//                                        .append("-").append("0").append(selMonth+1).append("-").append(selYear)
+//                                        .append(" "));
+//                            }
+//                            else{
+//                                txtShowDate.setText(new StringBuilder().append(selDay)
+//                                        .append("-").append(selMonth+1).append("-").append(selYear)
+//                                        .append(" "));
+//                            }
+//                            txtShowDate.requestFocus();
+//                        }
+//                    }
+//                    else{
+//                        Helper.showAlertDialog(BookAnOrderActivity.this,"Wrong Date Selection","Invalid Order Due Date");
+//                        txtShowDate.setText(new StringBuilder()
+//                                .append(day).append("-")
+//                                .append(month + 1).append("-").append(year));
+//                    }
+//                }
+//                else{
+//                    if(String.valueOf(selMonth).length()==1){
+//                        txtShowDate.setText(new StringBuilder().append(selDay)
+//                                .append("-").append("0").append(selMonth+1).append("-").append(selYear)
+//                                .append(" "));
+//                    }
+//                    else{
+//                        txtShowDate.setText(new StringBuilder().append(selDay)
+//                                .append("-").append(selMonth+1).append("-").append(selYear)
+//                                .append(" "));
+//                    }
+//                    txtShowDate.requestFocus();
+//                }
+//            }
+//            else{
+//                Helper.showAlertDialog(BookAnOrderActivity.this,"Wrong Date Selection","Invalid Order Due Date");
+//                txtShowDate.setText(new StringBuilder()
+//                        .append(day).append("-")
+//                        .append(month + 1).append("-").append(year));
+//            }
 
+            txtShowDate.setText(new StringBuilder().append(selDay)
+                    .append("-").append("0").append(selMonth + 1).append("-").append(selYear)
+                    .append(" "));
+        }
+    };
 
+    private DatePickerDialog.OnDateSetListener pickerListener1 = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int selectedYear,
+                              int selectedMonth, int selectedDay) {
+
+            selYear  = selectedYear;
+            selMonth = selectedMonth;
+            selDay   = selectedDay;
+
+//            if(selYear>=year){
+//                if(selYear==year){
+//                    if(selMonth>=month){
+//                        if(selMonth==month){
+//                            if(selDay>day){
+//                                if(String.valueOf(selMonth).length()==1){
+//                                    txtShowDate.setText(new StringBuilder().append(selDay)
+//                                            .append("-").append("0").append(selMonth + 1).append("-").append(selYear)
+//                                            .append(" "));
+//                                }
+//                                else{
+//                                    txtShowDate.setText(new StringBuilder().append(selDay)
+//                                            .append("-").append(selMonth+1).append("-").append(selYear)
+//                                            .append(" "));
+//                                }
+//                                txtShowDate.requestFocus();
+//                            }
+//                            else{
+//                                Helper.showAlertDialog(BookAnOrderActivity.this,"Wrong Date Selection","Invalid Order Due Date");
+//                                txtShowDate.setText(new StringBuilder()
+//                                        .append(day).append("-")
+//                                        .append(month + 1).append("-").append(year));
+//                            }
+//                        }
+//                        else{
+//                            if(String.valueOf(selMonth).length()==1){
+//                                txtShowDate.setText(new StringBuilder().append(selDay)
+//                                        .append("-").append("0").append(selMonth+1).append("-").append(selYear)
+//                                        .append(" "));
+//                            }
+//                            else{
+//                                txtShowDate.setText(new StringBuilder().append(selDay)
+//                                        .append("-").append(selMonth+1).append("-").append(selYear)
+//                                        .append(" "));
+//                            }
+//                            txtShowDate.requestFocus();
+//                        }
+//                    }
+//                    else{
+//                        Helper.showAlertDialog(BookAnOrderActivity.this,"Wrong Date Selection","Invalid Order Due Date");
+//                        txtShowDate.setText(new StringBuilder()
+//                                .append(day).append("-")
+//                                .append(month + 1).append("-").append(year));
+//                    }
+//                }
+//                else{
+//                    if(String.valueOf(selMonth).length()==1){
+//                        txtShowDate.setText(new StringBuilder().append(selDay)
+//                                .append("-").append("0").append(selMonth+1).append("-").append(selYear)
+//                                .append(" "));
+//                    }
+//                    else{
+//                        txtShowDate.setText(new StringBuilder().append(selDay)
+//                                .append("-").append(selMonth+1).append("-").append(selYear)
+//                                .append(" "));
+//                    }
+//                    txtShowDate.requestFocus();
+//                }
+//            }
+//            else{
+//                Helper.showAlertDialog(BookAnOrderActivity.this,"Wrong Date Selection","Invalid Order Due Date");
+//                txtShowDate.setText(new StringBuilder()
+//                        .append(day).append("-")
+//                        .append(month + 1).append("-").append(year));
+//            }
+
+            txtShowOrderDate.setText(new StringBuilder().append(selDay)
+                    .append("-").append("0").append(selMonth + 1).append("-").append(selYear)
+                    .append(" "));
         }
     };
 
